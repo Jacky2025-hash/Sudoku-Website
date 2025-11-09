@@ -4,44 +4,57 @@
   <meta charset="UTF-8">
   <title>Sudoku-Rätsel</title>
   <style>
-    body { font-family: sans-serif; text-align: center; }
-    table { border-collapse: collapse; margin: 20px auto; }
+    body {
+      font-family: sans-serif;
+      text-align: center;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin: 20px auto;
+    }
+
     td {
-  border: 1px solid #999;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  padding: 0;
-}
-
-/* Dicke Rahmen für die 3×3 Blöcke */
-td:nth-child(3), td:nth-child(6) {
-  border-right: 3px solid #000;
-}
-tr:nth-child(3) td, tr:nth-child(6) td {
-  border-bottom: 3px solid #000;
-}
-
+      border: 1px solid #999;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      padding: 0;
+    }
 
     input {
-  width: 100%;
-  height: 100%;
-  font-size: 18px;
-  text-align: center;
-  border: 1px solid #666; /* Rahmen um jede Zahl */
-  box-sizing: border-box;
-}
-    .bold-border { border: 2px solid #000; }
-    #code-output { font-size: 20px; margin-top: 20px; }
+      width: 100%;
+      height: 100%;
+      font-size: 18px;
+      text-align: center;
+      border: 1px solid #666;
+      box-sizing: border-box;
+    }
+
+    /* Dicke Rahmen für die 3×3 Blöcke */
+    tr:nth-child(3) td {
+      border-bottom: 3px solid #000;
+    }
+
+    tr:nth-child(6) td {
+      border-bottom: 3px solid #000;
+    }
+
+    td:nth-child(3),
+    td:nth-child(6) {
+      border-right: 3px solid #000;
+    }
+
+    #code-output {
+      font-size: 20px;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
-  <h1>Sudoku-Rätsel</h1>
+  <h1>🧩 Sudoku-Rätsel</h1>
   <table id="sudoku">
-    <!-- 9x9 Grid -->
-    <tbody>
-      <!-- Rows will be inserted via JavaScript -->
-    </tbody>
+    <tbody></tbody>
   </table>
   <button onclick="checkSudoku()">Lösung prüfen</button>
   <p id="code-output"></p>
@@ -60,14 +73,14 @@ tr:nth-child(3) td, tr:nth-child(6) td {
     ];
 
     const puzzle = [
-      [5,3,'','',7,'','','',''],
+      [5,3,'','','','','','',''],
       [6,'','',1,9,5,'','',''],
       ['','',8,'','','','',6,''],
       [8,'','','',6,'','','',3],
       [4,'','',8,'',3,'','',1],
       [7,'','','',2,'','','',6],
       ['','',6,'','','','',8,''],
-      ['','','','',1,9,'','',5],
+      ['','','',4,1,9,'','',5],
       ['','','','','',6,'',7,9]
     ];
 
@@ -77,8 +90,6 @@ tr:nth-child(3) td, tr:nth-child(6) td {
       const row = document.createElement("tr");
       for (let j = 0; j < 9; j++) {
         const cell = document.createElement("td");
-        if (i % 3 === 0) cell.classList.add("bold-border");
-        if (j % 3 === 0) cell.classList.add("bold-border");
 
         const input = document.createElement("input");
         input.maxLength = 1;
